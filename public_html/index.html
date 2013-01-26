@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game</title>
+    <style type=text/css>
+        body{
+           background: #fff;
+           color: #222;
+           margin: 0;
+           padding: 0;
+        }
+        #container canvas {
+            border: 1px solid black;
+        }
+    </style>
+<!-- Start javascript/main.js -->
+    <script src="./js/lib/yabble.js"></script>
+	<script src="./js/lib/gamejs.min.js"></script>
+	<script src="./js/lib/kinetic.js"></script>
+    <script>
+        require.setModuleRoot('./js/');
+        require.run('main')
+    </script>
+</head>
+<!-- Html -->
+<body>
+    <div>
+        <div id="container"></div>
+    </div>
+</body>
+</html>
