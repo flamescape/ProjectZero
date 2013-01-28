@@ -6,8 +6,8 @@ gamejs.ready(function() {
 
 	var stage = new Kinetic.Stage({
 		container: 'container',
-		width: 578,
-		height: 200
+		width: 800,
+		height: 600
 	});
 
 	var layer = new Kinetic.Layer({
@@ -25,10 +25,16 @@ gamejs.ready(function() {
 		y: 0,
 		offset: {x:40,y:40},
 		points: [40,0,60,40,80,60,60,60,40,80,20,60,0,60,20,40],
-		fill: 'green',
+		//fill: 'green',
 		stroke: 'black',
 		strokeWidth: 1
 	});
+	var img = new Image();
+	img.onload = function(){
+		shipShape.setFillPatternImage(img);
+	};
+	img.src = 'ship.png';
+	
 	var turretShape = new Kinetic.Polygon({
 		x: 40,
 		y: 20,
@@ -42,7 +48,8 @@ gamejs.ready(function() {
 	// add the shapes to the layer
 	layer.add(shipShape);
 	layer.add(turretShape);
-    layer.add(turretShape.clone({x:-40,y:20}));
+	var turretShape2 = turretShape.clone({x:-40,y:20})
+    layer.add(turretShape2);
 
 	// add the layer to the stage
 	stage.add(layer);
@@ -50,10 +57,13 @@ gamejs.ready(function() {
 	var num = 0;
     function tick(msDuration) {
 		layer.setRotationDeg(num++);
-        var tpos = turretShape.getAbsolutePosition()
+        var tpos = turretShape.getAbsolutePosition();
+		var tpos2 = turretShape2.getAbsolutePosition();
         var mpos = stage.getUserPosition();
-        if (mpos)
-        turretShape.setAbsoluteRotation(-Math.atan2(tpos.x-mpos.x, tpos.y-mpos.y));
+        if (mpos) {
+			turretShape.setAbsoluteRotation(-Math.atan2(tpos.x-mpos.x, tpos.y-mpos.y));
+			turretShape2.setAbsoluteRotation(-Math.atan2(tpos2.x-mpos.x, tpos2.y-mpos.y));
+		}
 		stage.draw();
         
         return;
