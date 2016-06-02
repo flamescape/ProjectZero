@@ -40,7 +40,7 @@ state.create = function() {
 	});
 
 	s.backThruster = s.addThruster({
-		particle: "faceball",
+		particle: "fire",
 		maxForce: 1000,
 		offsetX: 0,
 		offsetY: 37

@@ -102,10 +102,12 @@ ShipThrusterEntity.prototype.update = function(){
 	var ejectionAngle = this.parent.body.rotation + Math.PI / 2;
 	var magnitude = (this.power / 100) * this.maxForce;
 
+	var randomMultiplier = (() => Math.random()*1.5);
+
 	this.emitter.minParticleSpeed.x = magnitude * 0.5 * Math.cos(ejectionAngle);
-	this.emitter.maxParticleSpeed.x = this.emitter.minParticleSpeed.x * (Math.random()*5)
+	this.emitter.maxParticleSpeed.x = this.emitter.minParticleSpeed.x * randomMultiplier();
 	this.emitter.minParticleSpeed.y = magnitude * 0.5 * Math.sin(ejectionAngle);
-	this.emitter.maxParticleSpeed.y = this.emitter.minParticleSpeed.y * (Math.random()*5)
+	this.emitter.maxParticleSpeed.y = this.emitter.minParticleSpeed.y * randomMultiplier();
 	this.emitter.emitParticle(this.parent.body.x + fx, this.parent.body.y + fy, this.particle, 0);
 
     this.parent.body.applyForce(
@@ -164,7 +166,7 @@ state.create = function() {
 	});
 
 	s.backThruster = s.addThruster({
-		particle: "faceball",
+		particle: "fire",
 		maxForce: 1000,
 		offsetX: 0,
 		offsetY: 37
